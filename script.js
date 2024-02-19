@@ -113,3 +113,20 @@ const promptForMetacriticScoresAndFetchGames = () => {
 const isValidScore = (score) => {
   return score !== null && score >= 0 && score <= 100 && !isNaN(score);
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+  fetchTopRatedGames(games => displayGames(games, 'games-container'));
+  document.getElementById('load-specific-games').addEventListener('click', loadSpecificGames);
+  document.getElementById('load-games-by-platforms').addEventListener('click', loadGamesByPlatforms);
+  document.getElementById('load-game-by-id').addEventListener('click', loadGameById);
+  document.getElementById('load-game-stores').addEventListener('click', () => {
+    const gameId = prompt("Enter the game ID to see details and available stores:");
+    if (gameId) {
+      loadGameDetailsAndStores(gameId);
+    }
+  });
+  document.getElementById('load-game-by-developers').addEventListener('click', loadGamesByDevelopers);
+  document.getElementById('load-games-by-date').addEventListener('click', promptForDatesAndFetchGames);
+  document.getElementById('load-games-by-metacritic').addEventListener('click', promptForMetacriticScoresAndFetchGames);
+
+});
