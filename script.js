@@ -213,3 +213,7 @@ const loadGameDetailsAndStores = (gameId) => {
   });
 };
 
+  fetchGameStoresById(gameId, stores => {
+    displayStores(stores, 'game-stores-container');
+  });
+
