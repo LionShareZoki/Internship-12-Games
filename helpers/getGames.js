@@ -84,3 +84,46 @@ export const fetchGamesByDeveloper = (developerNames, callback) => {
   const params = { developers: developerNames.join(','), ordering: '-rating', page_size: 10 };
   fetchGames(params, callback);
 };
+
+export const displayGamesForDeveloper = (games, developerName, containerId) => {
+  const mainContainer = document.getElementById(containerId);
+  const developerContainer = document.createElement('div');
+  developerContainer.className = 'developer-games-container';
+
+  const developerTitle = document.createElement('h3');
+  developerTitle.textContent = developerName;
+  developerContainer.appendChild(developerTitle);
+
+  games.forEach(game => {
+    const card = document.createElement('div');
+    card.className = 'game-card';
+
+    let starsHtml = '';
+    const rating = parseFloat(game.rating);
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        starsHtml += `<span class="star full">★</span>`;
+      } else if (i - 1 < rating && i > rating) {
+        const percentage = (rating - Math.floor(rating)) * 100;
+        starsHtml += generatePartialStar(i, percentage);
+      } else {
+        starsHtml += `<span class="star empty">★</span>`;
+      }
+    }
+    starsHtml = `<div class="game-stars">${starsHtml}</div>`;
+
+    card.innerHTML = `
+      <img src="${game.background_image}" alt="${game.name}" loading="lazy">
+      <div class="game-card-content">
+        <h3 class="game-title">${game.name}</h3>
+        <p class="game-release-date">Release Date: ${game.released}</p>
+        ${starsHtml}
+      </div>
+    `;
+
+    developerContainer.appendChild(card);
+  });
+
+  mainContainer.appendChild(developerContainer);
+};
+
