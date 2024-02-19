@@ -62,3 +62,19 @@ const loadGamesByDevelopers = () => {
     });
   }
 };
+
+const promptForDatesAndFetchGames = () => {
+  let startDate = prompt("Enter the start date (YYYY-MM-DD):");
+  let endDate = prompt("Enter the end date (YYYY-MM-DD):");
+
+  while (!isValidDate(startDate) || !isValidDate(endDate) || new Date(startDate) > new Date(endDate)) {
+    alert("Invalid dates entered. Please enter valid start and end dates.");
+    startDate = prompt("Enter the start date (YYYY-MM-DD):");
+    endDate = prompt("Enter the end date (YYYY-MM-DD):");
+  }
+
+  fetchGamesWithinDateRange(startDate, endDate, games => {
+    const sortedGames = games.sort((a, b) => b.rating - a.rating);
+    displayGames(sortedGames, 'games-container-by-date');
+  });
+};
