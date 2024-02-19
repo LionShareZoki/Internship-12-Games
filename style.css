@@ -1,0 +1,162 @@
+#games-container,
+#specific-games-container,
+#platform-games-container,
+#game-by-id-container2,
+#game-stores-container,
+#developer-games-container,
+#games-container-by-date,
+#games-container-by-score {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+h1,
+h2 {
+  width: 100%;
+  text-align: center;
+}
+
+button {
+  padding: 10px 30px;
+  border: 0;
+  outline: none;
+  border-radius: 50px;
+  background-image: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-image: linear-gradient(45deg, #2575fc 0%, #6a11cb 100%);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+button:active {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(1px);
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.game-card {
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.game-card-content {
+  padding: 15px;
+}
+
+.game-title,
+.game-release-date,
+.game-rating {
+  margin: 5px 0;
+}
+
+.star {
+  display: inline-block;
+  font-size: 24px;
+  color: gray;
+  vertical-align: middle;
+}
+
+.star.full,
+.star.partial {
+  color: gold;
+}
+
+.star.partial::before {
+  content: "★";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--star-percentage);
+  overflow: hidden;
+  color: gold;
+}
+
+.store-card-content {
+  max-width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  text-align: center;
+  margin: 20px;
+}
+
+.store-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.store-name {
+  color: #333;
+  margin: 10px 0;
+}
+
+.store-card-content p {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+h2,
+h1 {
+  font-size: 2.5rem;
+  color: transparent;
+  background-image: linear-gradient(45deg, #ff0099, #493240, #f3f315);
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: gradientAnimation 5s ease infinite;
+  background-size: 200% 200%;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.no-background-clip h2,
+.no-background-clip h1 {
+  color: #fff;
+  background-image: none;
+  animation: none;
+}
