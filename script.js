@@ -109,3 +109,7 @@ const promptForMetacriticScoresAndFetchGames = () => {
   };
   fetchGames(params, games => displayGames(games, 'games-container-by-score'));
 };
+
+const isValidScore = (score) => {
+  return score !== null && score >= 0 && score <= 100 && !isNaN(score);
+};
