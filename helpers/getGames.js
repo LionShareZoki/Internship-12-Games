@@ -80,3 +80,7 @@ export function fetchStoreDetails(storeId, callback) {
       .catch(error => console.error('Error fetching store details:', error));
 }
 
+export const fetchGamesByDeveloper = (developerNames, callback) => {
+  const params = { developers: developerNames.join(','), ordering: '-rating', page_size: 10 };
+  fetchGames(params, callback);
+};
