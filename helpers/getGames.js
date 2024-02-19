@@ -21,3 +21,18 @@ export const fetchSpecificGames = (searchCriterion, callback) => {
   const params = { search: searchCriterion, ordering: '-released', page_size: 10 };
   fetchGames(params, callback);
 };
+
+export const fetchTopPlatforms = (callback) => {
+  const baseUrl = 'https://api.rawg.io/api/platforms';
+  const url = new URL(baseUrl);
+  url.search = new URLSearchParams({ key: apiKey }).toString();
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      const topPlatforms = data.results.sort((a, b) => b.games_count - a.games_count).slice(0, 10);
+      callback(topPlatforms);
+    })
+    .catch(error => console.error('Error fetching platforms: ', error));
+};
+
