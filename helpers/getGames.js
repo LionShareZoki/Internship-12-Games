@@ -47,3 +47,15 @@ export const fetchGameById = (gameId, callback) => {
     .catch(error => console.error('Error fetching data: ', error));
 };
 
+export const fetchGameStores = (gameId, callback) => {
+  const baseUrl = `https://api.rawg.io/api/games/${gameId}/stores`;
+  const url = new URL(baseUrl);
+  url.search = new URLSearchParams({ key: apiKey }).toString();
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => callback(data.results))
+    .catch(error => console.error('Error fetching game stores: ', error));
+};
+
+
