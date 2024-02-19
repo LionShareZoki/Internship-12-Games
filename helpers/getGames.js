@@ -70,3 +70,13 @@ export const fetchGameStoresById = (gameId, callback) => {
       .catch(error => console.error('Error fetching stores: ', error));
 };
 
+export function fetchStoreDetails(storeId, callback) {
+  const url = `https://api.rawg.io/api/stores/${storeId.store_id}?key=${apiKey}`;
+  fetch(url)
+      .then(response => response.json())
+      .then(data => {
+          callback(data);
+      })
+      .catch(error => console.error('Error fetching store details:', error));
+}
+
