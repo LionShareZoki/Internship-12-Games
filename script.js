@@ -91,3 +91,21 @@ const isValidDate = (dateString) => {
   }
   return date.toISOString().startsWith(dateString);
 };
+
+const promptForMetacriticScoresAndFetchGames = () => {
+  let minScore = prompt("Enter the minimum Metacritic score (0-100):");
+  let maxScore = prompt("Enter the maximum Metacritic score (0-100):");
+
+  while (!isValidScore(minScore) || !isValidScore(maxScore) || parseInt(minScore) > parseInt(maxScore)) {
+    alert("Invalid scores entered. The minimum score must be less than or equal to the maximum score, and both must be between 0 and 100.");
+    minScore = prompt("Enter the minimum Metacritic score (0-100):");
+    maxScore = prompt("Enter the maximum Metacritic score (0-100):");
+  }
+
+  const params = {
+    metacritic: `${minScore},${maxScore}`,
+    ordering: '-metacritic,name',
+    page_size: 20
+  };
+  fetchGames(params, games => displayGames(games, 'games-container-by-score'));
+};
