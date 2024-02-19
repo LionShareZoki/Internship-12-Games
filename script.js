@@ -162,3 +162,21 @@ const loadGameById = () => {
   }
 };
 
+const displayStores = (stores, containerId) => {
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+
+  stores.forEach(store => {
+    const card = document.createElement('div');
+    card.className = 'store-card';
+
+    card.innerHTML = `
+      <div class="store-card-content">
+          <img src="${store.image_background || 'placeholder-image-url.jpg'}" alt="${store.name}" class="store-image">
+          <h3 class="store-name">${store.name}</h3>
+          <p>Number of Games: ${store.games_count || 'N/A'}</p>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+};
