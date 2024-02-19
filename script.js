@@ -199,3 +199,17 @@ const displayStore = (store, containerId) => {
 
 
 
+const loadGameDetailsAndStores = (gameId) => {
+  fetchGameById(gameId, game => {
+    displayGames([game], 'game-by-id-container2');
+  });
+
+  fetchGameStoresById(gameId, stores => {
+    stores.forEach(storeId => {
+      fetchStoreDetails(storeId, storeDetails => {
+        displayStore(storeDetails, 'game-stores-container');
+      });
+    });
+  });
+};
+
