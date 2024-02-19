@@ -38,3 +38,27 @@ const displayGames = (games, containerId) => {
     container.appendChild(card);
   });
 };
+
+export function generatePartialStar(index, percentage) {
+  return `<svg height="17" width="17" viewbox="0 0 25 25" class="star">
+      <defs>
+          <linearGradient id="grad${index}" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="${percentage}%" stop-color="gold" />
+              <stop offset="${percentage}%" stop-color="grey" />
+          </linearGradient>
+      </defs>
+      <polygon points="12.5,0 16.0,8.0 25,9.1 18.5,15.0 20,24 12.5,19.8 5,24 6.5,15.0 0,9.1 8.9,8.0" style="fill:url(#grad${index}); stroke:gold; stroke-width:0.5"/>
+  </svg>`;
+}
+
+const loadGamesByDevelopers = () => {
+  const developerNamesInput = prompt("Enter developer names separated by commas:");
+  if (developerNamesInput) {
+    const developerNames = developerNamesInput.split(',').map(name => name.trim());
+    developerNames.forEach(developerName => {
+      fetchGamesByDeveloper([developerName], games => {
+        displayGamesForDeveloper(games, developerName, 'developer-games-container');
+      });
+    });
+  }
+};
