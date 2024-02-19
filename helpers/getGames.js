@@ -16,3 +16,8 @@ export const fetchTopRatedGames = (callback) => {
   const params = { ordering: '-metacritic', page_size: 20 };
   fetchGames(params, callback);
 };
+
+export const fetchSpecificGames = (searchCriterion, callback) => {
+  const params = { search: searchCriterion, ordering: '-released', page_size: 10 };
+  fetchGames(params, callback);
+};
