@@ -130,3 +130,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('load-games-by-metacritic').addEventListener('click', promptForMetacriticScoresAndFetchGames);
 
 });
+
+const loadSpecificGames = () => {
+  const searchCriterion = prompt("Enter a keyword to search for games:");
+  if (searchCriterion) {
+    fetchSpecificGames(searchCriterion, games => displayGames(games, 'specific-games-container'));
+  }
+};
+
