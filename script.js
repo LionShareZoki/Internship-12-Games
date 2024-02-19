@@ -154,3 +154,11 @@ const loadGamesByPlatforms = () => {
     }
   });
 };
+
+const loadGameById = () => {
+  const gameId = prompt("Enter the game ID:");
+  if (gameId) {
+    fetchGameById(gameId, game => displayGames([game], 'game-by-id-container'));
+  }
+};
+
