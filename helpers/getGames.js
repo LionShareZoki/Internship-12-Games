@@ -11,3 +11,8 @@ export const fetchGames = (params, callback) => {
     .then(data => callback(data.results))
     .catch(error => console.error('Error fetching data: ', error));
 };
+
+export const fetchTopRatedGames = (callback) => {
+  const params = { ordering: '-metacritic', page_size: 20 };
+  fetchGames(params, callback);
+};
