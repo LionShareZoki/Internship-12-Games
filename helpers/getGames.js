@@ -36,3 +36,14 @@ export const fetchTopPlatforms = (callback) => {
     .catch(error => console.error('Error fetching platforms: ', error));
 };
 
+export const fetchGameById = (gameId, callback) => {
+  const baseUrl = `https://api.rawg.io/api/games/${gameId}`;
+  const url = new URL(baseUrl);
+  url.search = new URLSearchParams({ key: apiKey }).toString();
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => callback(data))
+    .catch(error => console.error('Error fetching data: ', error));
+};
+
