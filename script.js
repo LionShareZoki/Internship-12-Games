@@ -138,3 +138,19 @@ const loadSpecificGames = () => {
   }
 };
 
+const loadGamesByPlatforms = () => {
+  fetchTopPlatforms(platforms => {
+    const platformNames = platforms.map(platform => platform.name).join(', ');
+    const userPlatformsInput = prompt("Enter platform names separated by commas (Available: " + platformNames + "):");
+    const userPlatforms = userPlatformsInput.split(',').map(name => name.trim());
+
+    const platformIds = platforms.filter(platform => userPlatforms.includes(platform.name)).map(platform => platform.id);
+
+    if (platformIds.length > 0) {
+      const params = { platforms: platformIds.join(','), ordering: 'name', page_size: 20 };
+      fetchGames(params, games => displayGames(games, 'platform-games-container'));
+    } else {
+      alert('No valid platforms entered. Please try again.');
+    }
+  });
+};
